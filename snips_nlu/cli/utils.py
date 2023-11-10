@@ -69,11 +69,10 @@ def _color_from_level(level):
 
 
 def get_json(url, desc):
-    print("\n\nGetting JSON\n\n")
-    r = requests.get(url, verify=False)
-    # if r.status_code != 200:
-    #     raise OSError("%s: Received status code %s when fetching the resource"
-    #                   % (desc, r.status_code))
+    r = get(url)
+    if r.status_code != 200:
+        raise OSError("%s: Received status code %s when fetching the resource"
+                      % (desc, r.status_code))
     return r.json()
 
 
