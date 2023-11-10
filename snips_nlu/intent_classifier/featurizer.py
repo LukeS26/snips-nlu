@@ -334,7 +334,7 @@ class TfidfVectorizer(ProcessingUnit):
         """
         utterances = [self._enrich_utterance(*data)
                       for data in zip(*self._preprocess(x))]
-        return self._tfidf_vectorizer.transform(utterances)
+        return self._tfidf_vectorizer.transform(TfidfVectorizer().fit(utterances))
 
     def _preprocess(self, utterances):
         normalized_utterances = deepcopy(utterances)
