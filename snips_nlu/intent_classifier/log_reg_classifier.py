@@ -18,6 +18,8 @@ from snips_nlu.intent_classifier.log_reg_classifier_utils import (
 from snips_nlu.pipeline.configs import LogRegIntentClassifierConfig
 from snips_nlu.result import intent_classification_result
 
+import copy
+
 logger = logging.getLogger(__name__)
 
 # We set tol to 1e-3 to silence the following warning with Python 2 (
@@ -183,8 +185,9 @@ class LogRegIntentClassifier(IntentClassifier):
         import numpy as np
 
         self.classifier._check_proba()  # pylint: disable=W0212
-
-        prob = self.classifier.decision_function(X)
+        copyX = copy.deepcopy(X)
+        self.classifier.fit(copyX, self.values)
+        prob = self.classifier.decision_function(copyX)
         prob *= -1
         np.exp(prob, prob)
         prob += 1
