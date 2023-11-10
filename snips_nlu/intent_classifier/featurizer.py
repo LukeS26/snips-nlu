@@ -133,6 +133,7 @@ class Featurizer(ProcessingUnit):
         # normalization in the transform of the tfidf_vectorizer
         # this would lead to inconsistent result between: fit_transform(x, y)
         # and fit(x, y).transform(x)
+        x = self.tfidf_vectorizer.fit(x)
         return self.tfidf_vectorizer.transform(x)
 
     def _fit_cooccurrence_vectorizer(self, x, classes, none_class, dataset):
