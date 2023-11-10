@@ -128,6 +128,7 @@ class SnipsNLUEngine(ProcessingUnit):
 
         self.intent_parsers = parsers
         self.dataset_metadata = _get_dataset_metadata(dataset)
+        self.dataset = dataset
         return self
 
     @log_elapsed_time(logger, logging.DEBUG, "Parsed input in {elapsed_time}")
@@ -214,7 +215,7 @@ class SnipsNLUEngine(ProcessingUnit):
         """
         results = None
         for parser in self.intent_parsers:
-            parser_results = parser.get_intents(text)
+            parser_results = parser.get_intents(text, self.dataset)
             if results is None:
                 results = {res[RES_INTENT_NAME]: res for res in parser_results}
                 continue

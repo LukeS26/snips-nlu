@@ -138,7 +138,7 @@ class LogRegIntentClassifier(IntentClassifier):
         return self._get_intents(text, intents_filter)[0]
 
     @fitted_required
-    def get_intents(self, text):
+    def get_intents(self, text, dataset):
         """Performs intent classification on the provided *text* and returns
         the list of intents ordered by decreasing probability
 
@@ -149,9 +149,9 @@ class LogRegIntentClassifier(IntentClassifier):
             :class:`snips_nlu.exceptions.NotTrained`: when the intent
                 classifier is not fitted
         """
-        return self._get_intents(text, intents_filter=None)
+        return self._get_intents(text, dataset, intents_filter=None)
 
-    def _get_intents(self, text, intents_filter):
+    def _get_intents(self, text, dataset, intents_filter):
         if isinstance(intents_filter, str):
             intents_filter = {intents_filter}
         elif isinstance(intents_filter, list):
@@ -168,7 +168,8 @@ class LogRegIntentClassifier(IntentClassifier):
 
         # pylint: disable=C0103
         #Needs dataset of intents (I think, idk about that), the utterance, and the classes and none_class
-        X = self.featurizer.fit_transform(self.intent_list, [text_to_utterance(text)], self.intent_list, None)
+
+        X = self.featurizer.fit_transform(dataset, [text_to_utterance(text)], self.intent_list, None)
         # pylint: enable=C0103
         proba_vec = self._predict_proba(X)
         logger.debug(
