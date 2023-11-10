@@ -334,6 +334,7 @@ class TfidfVectorizer(ProcessingUnit):
         utterances = [self._enrich_utterance(*data)
                       for data in zip(*self._preprocess(x))]
         utterances = self._tfidf_vectorizer.fit(utterances)
+        print(utterances.shape())
         return self._tfidf_vectorizer.transform(utterances)
 
     def _preprocess(self, utterances):
