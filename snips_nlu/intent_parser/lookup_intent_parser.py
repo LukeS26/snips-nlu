@@ -114,7 +114,7 @@ class LookupIntentParser(IntentParser):
     @log_result(logger, logging.DEBUG, "LookupIntentParser result -> {result}")
     @log_elapsed_time(logger, logging.DEBUG, "Parsed in {elapsed_time}.")
     @fitted_required
-    def parse(self, text, intents=None, top_n=None):
+    def parse(self, text, intents=None, dataset=None, top_n=None):
         """Performs intent parsing on the provided *text*
 
         Intent and slots are extracted simultaneously through pattern matching
