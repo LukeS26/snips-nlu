@@ -169,7 +169,7 @@ class LogRegIntentClassifier(IntentClassifier):
         # pylint: disable=C0103
         X = self.featurizer.fit_transform([text_to_utterance(text)])
         # pylint: enable=C0103
-        proba_vec = self._predict_proba(X)
+        proba_vec = self._predict_proba(X, self.utterances, self.classes_full, self.none_class)
         logger.debug(
             "%s", DifferedLoggingMessage(self.log_activation_weights, text, X))
         results = [
