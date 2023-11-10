@@ -103,7 +103,7 @@ class ProbabilisticIntentParser(IntentParser):
     @log_elapsed_time(logger, logging.DEBUG,
                       "ProbabilisticIntentParser parsed in {elapsed_time}")
     @fitted_required
-    def parse(self, text, intents=None, top_n=None):
+    def parse(self, text, intents=None, dataset=None, top_n=None):
         """Performs intent parsing on the provided *text* by first classifying
         the intent and then using the correspond slot filler to extract slots
 

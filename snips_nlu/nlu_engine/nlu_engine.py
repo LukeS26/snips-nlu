@@ -177,7 +177,7 @@ class SnipsNLUEngine(ProcessingUnit):
         if top_n is None:
             none_proba = 0.0
             for parser in self.intent_parsers:
-                res = parser.parse(text, intents)
+                res = parser.parse(text, intents, dataset)
                 if is_empty(res):
                     none_proba = res[RES_INTENT][RES_PROBA]
                     continue
