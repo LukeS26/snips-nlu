@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 # effect) but will change in 0.21 to 1e-3. Specify tol to silence this warning.
 
 LOG_REG_ARGS = {
-    "loss": "log",
+    "loss": "log_loss",
     "penalty": "l2",
     "max_iter": 1000,
     "tol": 1e-3,
