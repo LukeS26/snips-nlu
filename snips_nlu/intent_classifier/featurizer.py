@@ -315,7 +315,6 @@ class TfidfVectorizer(ProcessingUnit):
         return self._tfidf_vectorizer is not None and hasattr(
             self._tfidf_vectorizer, "vocabulary_")
 
-    @fitted_required
     def transform(self, x):
         """Featurizes the given utterances after enriching them with builtin
         entities matches, custom entities matches and the potential word
@@ -334,7 +333,7 @@ class TfidfVectorizer(ProcessingUnit):
         """
         utterances = [self._enrich_utterance(*data)
                       for data in zip(*self._preprocess(x))]
-        self._tfidf_vectorizer.fit(utterances)
+        utterances = self._tfidf_vectorizer.fit(utterances)
         return self._tfidf_vectorizer.transform(utterances)
 
     def _preprocess(self, utterances):
