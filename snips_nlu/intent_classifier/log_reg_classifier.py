@@ -117,7 +117,7 @@ class LogRegIntentClassifier(IntentClassifier):
         return self
 
     @fitted_required
-    def get_intent(self, text, intents_filter=None):
+    def get_intent(self, text, dataset, intents_filter=None):
         """Performs intent classification on the provided *text*
 
         Args:
@@ -135,7 +135,7 @@ class LogRegIntentClassifier(IntentClassifier):
                 classifier is not fitted
 
         """
-        return self._get_intents(text, intents_filter)[0]
+        return self._get_intents(text, dataset, intents_filter)[0]
 
     @fitted_required
     def get_intents(self, text, dataset):

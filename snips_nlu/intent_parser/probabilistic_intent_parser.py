@@ -133,7 +133,7 @@ class ProbabilisticIntentParser(IntentParser):
             intents = list(intents)
 
         if top_n is None:
-            intent_result = self.intent_classifier.get_intent(text, intents)
+            intent_result = self.intent_classifier.get_intent(text, dataset, intents)
             intent_name = intent_result[RES_INTENT_NAME]
             if intent_name is not None:
                 slots = self.slot_fillers[intent_name].get_slots(text)
