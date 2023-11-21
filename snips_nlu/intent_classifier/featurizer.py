@@ -117,6 +117,8 @@ class Featurizer(ProcessingUnit):
         if not self.tfidf_vectorizer.vocabulary:
             raise _EmptyDatasetUtterancesError(
                 "Dataset is empty or with empty utterances")
+        print(x.shape())
+        print(y.shape())
         _, tfidf_pval = chi2(x_tfidf, y)
         best_tfidf_features = set(i for i, v in enumerate(tfidf_pval)
                                   if v < self.config.pvalue_threshold)
