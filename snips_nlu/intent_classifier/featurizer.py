@@ -114,6 +114,8 @@ class Featurizer(ProcessingUnit):
         )
         x_tfidf = self.tfidf_vectorizer.fit_transform(x, dataset)
 
+        print(x_tfidf)
+
         if not self.tfidf_vectorizer.vocabulary:
             raise _EmptyDatasetUtterancesError(
                 "Dataset is empty or with empty utterances")
