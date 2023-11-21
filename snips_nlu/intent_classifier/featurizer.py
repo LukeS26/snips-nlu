@@ -114,6 +114,7 @@ class Featurizer(ProcessingUnit):
         )
         x_tfidf = self.tfidf_vectorizer.fit_transform(x, dataset)
 
+        print("X_TFIDF")
         print(x_tfidf)
 
         if not self.tfidf_vectorizer.vocabulary:
