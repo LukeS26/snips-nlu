@@ -175,9 +175,6 @@ class LogRegIntentClassifier(IntentClassifier):
 
         none_class = max(classes)
 
-        print(classes)
-        print(dataset)
-
         X = self.featurizer.fit_transform(dataset, [text_to_utterance(text)], classes, none_class)
         # pylint: enable=C0103
         proba_vec = self._predict_proba(X)
